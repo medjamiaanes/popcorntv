@@ -1,0 +1,10 @@
+.app-logo {
+    color: #fff;
+    font-size: 3.2em;
+    letter-spacing: 0.3em;
+}
+.app-logo > span {
+    color: #f6981c;
+    font-size: 0.7em;
+    letter-spacing: 0.1em;
+}
