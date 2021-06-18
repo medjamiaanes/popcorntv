@@ -1,0 +1,32 @@
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../images/popcorn-background-cinema-concept.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.main form {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+@media all and (max-width: 768px) {
+    .app-title {
+        font-size: 2.5em;
+    }
+}
+@media all and (max-width: 480px) {
+    .app-title {
+        font-size: 2em;
+    }
+}
