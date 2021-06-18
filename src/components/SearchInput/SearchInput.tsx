@@ -1,5 +1,9 @@
 import React from "react";
-import { SearchOutlined, CloseOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  CloseOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons";
 import "./SearchInput.css";
 
 interface Props {
@@ -11,6 +15,7 @@ interface Props {
   value?: string;
   containerClassName?: string;
   inputClassName?: string;
+  loading?: boolean;
 }
 
 const SearchInput: React.FC<Props> = ({
@@ -22,7 +27,14 @@ const SearchInput: React.FC<Props> = ({
   value,
   containerClassName,
   inputClassName,
+  loading,
 }) => {
+  const renderRightIcon = (): any => {
+    if (value && !loading)
+      return <CloseOutlined className="right-icon" onClick={onClear} />;
+    if (value && loading) return <LoadingOutlined className="right-icon" />;
+    return null;
+  };
   return (
     <div
       className={`search-input-container ${containerClassName}`}
@@ -37,9 +49,7 @@ const SearchInput: React.FC<Props> = ({
         className={`search-input ${inputClassName}`}
         value={value}
       />
-      {value ? (
-        <CloseOutlined className="clear-icon" onClick={onClear} />
-      ) : null}
+      {renderRightIcon()}
     </div>
   );
 };

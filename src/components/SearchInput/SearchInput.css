@@ -24,7 +24,7 @@
     color: #f6981c;
     font-size: 1.5em;
 }
-.search-input-container > .clear-icon {
+.search-input-container > .right-icon {
     position: absolute;
     color: #f6981c;
     opacity: 0.7;
@@ -33,7 +33,7 @@
     font-size: 1.2em;
     right: 15px;
 }
-.search-input-container > .clear-icon:hover {
+.search-input-container > .right-icon:hover {
     opacity: 1;
 }
 
