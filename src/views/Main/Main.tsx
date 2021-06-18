@@ -19,7 +19,7 @@ const Main: React.FC = () => {
 
   return (
     <div className="main">
-      <AppLogo />
+      <AppLogo className="app-title" />
       <form onSubmit={handleSubmit}>
         <SearchInput
           placeHolder="Search for your show ..."
