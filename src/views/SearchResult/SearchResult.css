@@ -6,6 +6,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .search-result > .search-box {
@@ -17,6 +20,13 @@
 .search-result > .search-box > form {
     flex: 1;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+.search-result > .search-box > form > .loading-spinner {
+    font-size: 1.8em;
+    color: #f6981c;
+    margin-left: 16px;
 }
 .search-result > .search-box > form > .search-input-container {
     width: 40%;
@@ -25,6 +35,17 @@
 
 .search-result .search-box .app-logo {
     font-size: 2em;
+}
+
+.search-result .shows-list  {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0px; 
+    flex: 1;
+    margin-top: 16px;
+ 
 }
 @media all and (max-width: 1366px) {
     .search-result > .search-box > form > .search-input-container {
