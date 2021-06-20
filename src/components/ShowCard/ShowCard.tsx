@@ -7,16 +7,18 @@ interface Props {
   thumbnail: string;
   title: string;
   rating: number;
-  releaseYear: string;
+  releaseDate: Date;
   genres: Array<string>;
+  handleClick: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const ShowCard: React.FC<Props> = ({
   thumbnail,
   title,
   rating,
-  releaseYear,
+  releaseDate,
   genres,
+  handleClick,
 }) => {
   const renderThumbnail = (): React.ReactElement<HTMLImageElement> =>
     thumbnail ? (
@@ -33,12 +35,12 @@ const ShowCard: React.FC<Props> = ({
       />
     );
   return (
-    <div className="show-card">
+    <div className="show-card" onClick={handleClick}>
       {renderThumbnail()}
       <div className="show-infos">
         <h3 className="show-title">{title}</h3>
-        <div className="year-genres">
-          <h6 className="year">{new Date(releaseYear).getFullYear()}</h6>
+        <div className="date-genres">
+          <h6 className="release-date">{releaseDate}</h6>
           <h6 className="genres">
             {" "}
             {genres.map((genre, index) =>

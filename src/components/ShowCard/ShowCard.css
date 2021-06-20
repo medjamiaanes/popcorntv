@@ -42,23 +42,21 @@
     font-size: 1em;
 }
 
-.show-card > .show-infos > .year-genres  {
+.show-card > .show-infos > .date-genres  {
     display: flex;
     align-items: center;
     margin-top: 4px;
     color: rgba(255,255,255, 0.7);
     font-weight: 200;
 }
-.show-card > .show-infos > .year-genres > .genres {
-    margin-left: 8px;
-    
+.show-card > .show-infos > .date-genres > .genres {
+    margin-left: 8px;  
 }
 
 .show-card > .show-infos > .rating {
     display: flex;
     align-items: center;
     margin-top: 4px;
-  
 }
 
 .show-card > .show-infos > .rating > .rating-star {
