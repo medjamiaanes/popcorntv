@@ -16,6 +16,7 @@ interface Props {
   containerClassName?: string;
   inputClassName?: string;
   loading?: boolean;
+  readOnly?: boolean;
 }
 
 const SearchInput: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const SearchInput: React.FC<Props> = ({
   containerClassName,
   inputClassName,
   loading,
+  readOnly,
 }) => {
   const renderRightIcon = (): any => {
     if (value && !loading)
@@ -48,6 +50,7 @@ const SearchInput: React.FC<Props> = ({
         style={inputStyles}
         className={`search-input ${inputClassName}`}
         value={value}
+        readOnly={readOnly}
       />
       {renderRightIcon()}
     </div>
