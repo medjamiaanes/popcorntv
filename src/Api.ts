@@ -1,33 +1,6 @@
 import axios from "axios";
-
+import { Show, Season } from "./Interfaces";
 axios.defaults.baseURL = "https://api.tvmaze.com";
-
-type image = { medium: string; original: string };
-interface Show {
-  premiered: Date;
-  id: number;
-  summary?: string;
-  rating: { avergae: number };
-  genres: Array<string>;
-  name: string;
-  image: image;
-}
-
-interface Season {
-  name: string;
-  number: number;
-  url: string;
-  episodeOrder: number;
-}
-
-interface Episode {
-  name: string;
-  season: number;
-  url: string;
-  image: image;
-  runtime: number;
-  number: number;
-}
 
 const extractShowDetails = (data: Show): Show => ({
   name: data.name,
@@ -36,7 +9,7 @@ const extractShowDetails = (data: Show): Show => ({
   genres: data.genres,
   rating: data.rating,
   image: data.image,
-  summary: data.summary,
+  summary: data.summary?.replace(/<p>|<b>|<\/p>|<\/b>/g, "") || "",
 });
 
 const extractSeasonDetails = (data: Season): Season => ({
@@ -44,18 +17,14 @@ const extractSeasonDetails = (data: Season): Season => ({
   url: data.url,
   episodeOrder: data.episodeOrder,
   name: data.name,
-});
-
-const extractEpisodeDetails = (data: Episode): Episode => ({
-  number: data.number,
-  url: data.url,
-  name: data.name,
+  summary: data.summary?.replace(/<p>|<b>|<\/p>|<\/b>/g, "") || "",
+  premiereDate: data.premiereDate,
   image: data.image,
-  runtime: data.runtime,
-  season: data.season,
 });
 
-export const searchShows = async (query: string) => {
+type singleShow = { showDetails: Show; showSeasons: Array<Season> };
+
+export const searchShows = async (query: string): Promise<Show | any> => {
   try {
     const { data } = await axios.get(`/search/shows`, { params: { q: query } });
     return Promise.resolve(
@@ -66,22 +35,18 @@ export const searchShows = async (query: string) => {
   }
 };
 
-export const fetchShowById = async (id: string) => {
+export const fetchShowById = async (id: string): Promise<singleShow | any> => {
   try {
     const { data: details } = await axios.get(`/shows/${id}`, {
       params: { embed: "cast" },
     });
-    const { data: episodes } = await axios.get(`/shows/${id}/episodes`);
     const { data: seasons } = await axios.get(`/shows/${id}/seasons`);
 
     const showDetails: Show = extractShowDetails(details);
+    const showSeasons = seasons.map((data: Season) =>
+      extractSeasonDetails(data)
+    );
 
-    const showSeasons = seasons.map((data: Season) => ({
-      ...extractSeasonDetails(data),
-      episodes: episodes
-        .filter(({ season }: Episode) => season === data.number)
-        .map((data: Episode) => extractEpisodeDetails(data)),
-    }));
     return Promise.resolve({ showDetails, showSeasons });
   } catch (error) {
     return Promise.reject(error);
