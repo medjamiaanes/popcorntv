@@ -19,6 +19,8 @@
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
+  "keywords": ["typecript", "react", "axios", "tvmaze"],
+  "author": "Anes Meister",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
