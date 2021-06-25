@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Main from "./views/Main";
 import SearchResult from "./views/SearchResult";
+import TVShow from "./views/TVShow";
 import "./App.css";
 
 const App: React.FC = () => (
@@ -15,6 +16,7 @@ const App: React.FC = () => (
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/search/:query" component={SearchResult} />
+        <Route path="/tvshow/:id" component={TVShow} />
         <Redirect to="/" />
       </Switch>
     </Router>

@@ -1,0 +1,108 @@
+.tv-show {
+    width: 100%;
+    height: 100%;
+    padding: 48px 64px;
+    background-image: url('../../images/closeup-shot-white-bowl-with-popping-pop-corn-out-it-dark-background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.tv-show > .show-details {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tv-show > .show-details > .show-infos {
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+    padding: 8px;
+    border: 1px solid #f6981c;
+}
+.tv-show > .show-details > .show-infos > .show-thumbnail {
+    max-height: 350px;
+    flex: 1;
+    border-radius: inherit;
+}
+.tv-show > .show-details > .show-infos > .infos  {
+   margin-left: 16px;
+   flex: 3.5;
+   min-width: 200px;
+}
+
+.tv-show > .show-details > .show-infos > .infos .show-title  {
+   font-size: 1.6em;
+ }
+
+.tv-show > .show-details > .show-infos > .infos > .show-date-genres {
+   display: flex;
+   align-items: center;
+   font-size: 1.1em;
+   margin-top: 4px;
+}
+.tv-show > .show-details > .show-infos > .infos > .show-date-genres > .genres {
+    margin-left: 8px;
+}
+
+.tv-show > .show-details > .show-infos > .infos > .rating {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+} 
+
+.tv-show > .show-details > .show-infos > .infos > .rating > .rating-star {
+    color: #f6981c;
+    margin-left: 8px;
+    font-size: 1.2em;
+}
+.tv-show > .show-details > .show-infos > .infos > .rating > .rating-number {
+    margin-left: 8px;
+    font-size: 1em;
+}
+
+.tv-show > .show-details > .show-infos > .infos .summary {
+    margin-top: 4px;
+    font-size: 1em;
+}
+.tv-show > .show-details .show-seasons {
+    width: 100%;
+}
+
+
+@media all and (max-width: 890px) {
+    .tv-show > .show-details {
+        width: 100%;
+    }
+   
+    .tv-show > .show-details > .show-infos > .infos .show-title  {
+        font-size: 1.4em;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .tv-show {
+        padding: 48px 16px;
+    }
+    .tv-show > .show-details > .show-infos > .show-thumbnail{
+        min-width: 100%;
+    }
+    .tv-show > .show-details > .show-infos > .infos{
+        min-width: 100%;
+        margin: 0;
+    }
+    .tv-show > .show-details > .show-infos > .infos .show-title  {
+        margin-top: 16px;
+    }
+    .tv-show > .show-details > .show-infos > .infos .summary {
+        font-size: 0.8em;
+    }
+}
