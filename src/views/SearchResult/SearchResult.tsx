@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import AppLogo from "../../components/AppLogo";
 import SearchInput from "../../components/SearchInput";
 import ShowCard from "../../components/ShowCard";
 import NoResults from "../../components/NoResults";
 import { searchShows } from "../../Api";
+import { Show } from "../../Interfaces";
 import "./SearchResult.css";
 
 interface Params {
@@ -12,10 +13,11 @@ interface Params {
 }
 const SearchResult: React.FC = () => {
   const params: Params = useParams();
+  const history = useHistory();
 
   const [search, setSearch] = React.useState<string>(params.query || "");
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [shows, setShows] = React.useState<Array<any>>([]);
+  const [shows, setShows] = React.useState<Array<Show>>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
@@ -26,20 +28,26 @@ const SearchResult: React.FC = () => {
     window.location.replace(`/search/${search}`);
   };
 
+  const handleCardClick = (showId: number): void => {
+    history.push(`/tvshow/${showId}`);
+  };
+
   const renderShows = (): any => {
     if (shows.length) {
-      return shows.map((show, index) => (
+      return shows.map((show: Show, index: number) => (
         <ShowCard
           key={`show-${index}`}
           thumbnail={show.image?.medium || ""}
           title={show.name}
           rating={show.rating.average}
           genres={show.genres}
-          releaseYear={show.premiered}
+          releaseDate={show.premiered}
+          handleClick={(e) => handleCardClick(show.id)}
         />
       ));
     }
-    return <NoResults />;
+    if (!loading && !shows.length) return <NoResults />;
+    return null;
   };
 
   React.useEffect(() => {
@@ -68,6 +76,7 @@ const SearchResult: React.FC = () => {
             value={search}
             onClear={() => setSearch("")}
             loading={loading}
+            readOnly={loading}
           />
         </form>
       </div>
